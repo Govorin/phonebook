@@ -1,0 +1,36 @@
+<form class="form" [formGroup]="form">
+
+  <nz-input-group [nzSuffix]="name">
+    <input nz-input placeholder="Имя" formControlName="firstName"/>
+  </nz-input-group>
+  <nz-input-group [nzSuffix]="name">
+    <input nz-input placeholder="Фамилия"
+           formControlName="lastName"/>
+  </nz-input-group>
+  <nz-input-group [nzSuffix]="mail">
+    <input nz-input placeholder="Почта" formControlName="email"/>
+  </nz-input-group>
+  <nz-input-group [nzSuffix]="phone">
+    <input nz-input placeholder="Телефон"
+           formControlName="phoneNumber"
+           mask="(000) 000-0000"
+    />
+  </nz-input-group>
+  <nz-select formControlName="job"
+             nzPlaceHolder="Работа"
+  >
+    <nz-option *ngFor="let option of jobList" [nzLabel]="option"
+               [nzValue]="option"></nz-option>
+  </nz-select>
+  <ng-template #name><i nz-icon nzType="user"></i></ng-template>
+  <ng-template #mail><i nz-icon nzType="mail" nzTheme="outline"></i></ng-template>
+  <ng-template #phone><i nz-icon nzType="phone"
+                         nzTheme="outline"></i></ng-template>
+</form>
+
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="nzModalRef.close()">Отмена</button>
+  <button nz-button nzType="primary" (click)="formValue ? patchContact() : createContact()" [disabled]="form.invalid">
+    Сохранить
+  </button>
+</div>

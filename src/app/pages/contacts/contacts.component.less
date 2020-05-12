@@ -1,0 +1,37 @@
+:host{
+  background: #F8FBFC;
+  height: 100%;
+  width: 100%;
+  display: block;
+  padding: 10px;
+  .header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    .title{
+      color:#7E69FA;
+      margin:0
+    }
+    .search{
+      height:100%;
+      width:200px
+    }
+  }
+
+  .row{
+    display:flex;
+    background: white;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    &:hover{
+      background: rgba(73, 162, 255, 0.6)
+    }
+    .column{
+      min-width: 300px;
+    }
+    &-more{
+      min-width:50px;
+    }
+  }
+}

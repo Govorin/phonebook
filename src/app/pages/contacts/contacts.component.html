@@ -1,0 +1,38 @@
+<div class="header">
+  <h2 class="title">Contacts</h2>
+  <div class="search">
+    <nz-input-group [nzSuffix]="search">
+      <input type="text" nz-input
+             nzSize="default"
+             placeholder="Поиск..."
+             [formControl]="searchControl"
+      >
+    </nz-input-group>
+    <ng-template #search><i nz-icon nzType="search" nzTheme="outline"></i></ng-template>
+  </div>
+
+  <button nz-button
+          class="login-form-button login-form-margin"
+          nzType='primary'
+          (click)="onCreateContact()"
+  >Добавить</button>
+</div>
+<div class="main">
+  <div class="row" *ngFor="let contact of (contactsQuery.contacts | async | filter : (searchControl.valueChanges | async))">
+    <div class="column-more">
+      <i nz-icon nzType="more" nzTheme="outline"
+         nz-dropdown
+         nzTrigger="click"
+         [nzDropdownMenu]="menu"></i>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item (click)="onDeleteContact(contact)">Удалить</li>
+          <li nz-menu-item (click)="onEditContact(contact)">Редактировать</li>
+        </ul>
+      </nz-dropdown-menu></div>
+    <div class="column">{{contact.firstName + ' ' + contact.lastName}}</div>
+    <div class="column">{{contact.job}}</div>
+    <div class="column">{{contact.email}}</div>
+    <div class="column">{{contact.phoneNumber | mask: '(000) 000-0000'}}</div>
+  </div>
+</div>
